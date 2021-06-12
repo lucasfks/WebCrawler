@@ -5,7 +5,7 @@ Web Crawler
 
 -Geral:
     O web crawler armazena os atributos de cada maquina em um dicionario (atDict), 
-o qual eh adicionado a uma lista de maquinas (machines). A lista de maquinas tem como 
+o qual eh adicionado a uma lista de maquinas (machines). A lista de maquinas tem, como 
 elementos, os dicionarios das maquinas encontradas na pagina web. Antes de armazenar os 
 atributos de uma maquina no dicionario, eles sao armazenados em uma lista de atributos (atList).
 Essa lista facilita o armazenamento de atributos durante a execucao dos loops que foram 
@@ -26,7 +26,9 @@ errorUrl() para imprimir uma mensagem de erro.
 
 from bs4 import BeautifulSoup
 import requests
-import os, os.path, csv
+import json, csv
+#import os, os.path
+
 
 url = "https://www.vultr.com/products/cloud-compute/#pricing"
 
@@ -65,6 +67,7 @@ def runCrawler(url):
         crawl(html, machines, atList, atDict)  
         #print(machines) #teste para ver se funciona
         printMachines(machines)
+        saveToJson(machines)
     else:
         errorUrl()
 
@@ -107,6 +110,12 @@ def errorUrl():
     2) "https://www.digitalocean.com/pricing/"
     """
     print(message)
+    
+    
+def saveToJson(list):
+    with open("crawler_data.json", 'w') as file:
+        json.dump(list, file)
+        
 
 #Script:
 runCrawler(url)
