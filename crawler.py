@@ -48,11 +48,30 @@ atDict = {
 
 # a partir daqui ainda falta polir e documentar melhor:
 
+def printMachines(machines):
+    print("\nMAQUINAS:\n")
+    """
+    for i in range(len(machines)):
+        print("--Maquina " + str(i+1) + "--\n")
+        for item in machines[i].items():
+            print(item[0] + ": " + item[1] + "\n")
+        print("\n")
+        """
+    i = 1
+    for mac in machines:
+        print("--Maquina " + str(i) + "--\n")
+        i += 1
+        for item in mac.items():
+            print(item[0] + ": " + item[1] + "\n")
+        print("\n")
+            
+
 def runCrawler(url):
     if url == "https://www.vultr.com/products/cloud-compute/#pricing" or url == "https://www.digitalocean.com/pricing/":
         html = webpage(url)
         crawl(html, machines, atList, atDict)  
-        print(machines) #teste para ver se funciona
+        #print(machines) #teste para ver se funciona
+        printMachines(machines)
     else:
         errorUrl()
 
