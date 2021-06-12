@@ -27,7 +27,6 @@ errorUrl() para imprimir uma mensagem de erro.
 from bs4 import BeautifulSoup
 import requests
 import json, csv
-#import os, os.path
 
 
 url = "https://www.vultr.com/products/cloud-compute/#pricing"
@@ -42,8 +41,8 @@ atList = []
 # atDict (attributes dictionary): Dicionario de atributos de cada maquina. O dicionario de cada maquina sera adicionado a lista de maquinas (machList).
 atDict = {
        "CPU/VCPU" : "",
-       "MEMORY/SSD DISK" : "",
-       "STORAGE" : "",
+       "MEMORY" : "",
+       "STORAGE/SSD DISK" : "",
        "BANDWIDTH/TRANSFER" : "",
        "PRICE[$/mo]" : ""
 }
@@ -67,7 +66,8 @@ def runCrawler(url):
         crawl(html, machines, atList, atDict)  
         #print(machines) #teste para ver se funciona
         printMachines(machines)
-        saveToJson(machines)
+        #saveToJson(machines)
+        saveToCsv(machines)
     else:
         errorUrl()
 
@@ -93,9 +93,9 @@ def crawl(html, machines, atList, atDict):
             if len(atList) == 5:  # numero de atributos extraidos para cada maquina
                 # passando os atributos da atList para o datDict:
                 if url == "https://www.vultr.com/products/cloud-compute/#pricing": # para a pagina-alvo 1
-                    atDict["STORAGE"]= atList[0]    
+                    atDict["STORAGE/SSD DISK"]= atList[0]    
                     atDict["CPU/VCPU"]= atList[1]
-                    atDict["MEMORY/SSD DISK"]= atList[2]
+                    atDict["MEMORY"]= atList[2]
                     atDict["BANDWIDTH/TRANSFER"]= atList[3]
                     atDict["PRICE[$/mo]"]= atList[4]
                 #elif url == "https://www.digitalocean.com/pricing/": #pagina-alvo 2
@@ -112,9 +112,23 @@ def errorUrl():
     print(message)
     
     
-def saveToJson(list):
+def saveToJson(data):
     with open("crawler_data.json", 'w') as file:
-        json.dump(list, file)
+        json.dump(data, file)
+        
+def saveToCsv(data):
+    csvColumns = [
+       "CPU/VCPU",
+       "MEMORY",
+       "STORAGE/SSD DISK",
+       "BANDWIDTH/TRANSFER",
+       "PRICE[$/mo]"            
+    ]
+    with open("crawler_data.csv", 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=csvColumns)
+        writer.writeheader()
+        for value in data:
+            writer.writerow(value)
         
 
 #Script:
