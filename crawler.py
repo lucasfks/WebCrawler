@@ -52,7 +52,7 @@ def runCrawler(url):
     if url == "https://www.vultr.com/products/cloud-compute/#pricing" or url == "https://www.digitalocean.com/pricing/":
         html = webpage(url)
         crawl(html, machines, atList, atDict)  
-        print(machines)
+        print(machines) #teste para ver se funciona
     else:
         errorUrl()
 
@@ -74,8 +74,7 @@ def crawl(html, machines, atList, atDict):
             #print("-------//------")
             if len(content) != 0:
                 atList.append(content[0].get_text())
-                #print(atributes)
-                #atributes.clear()
+                #print(atList)
             if len(atList) == 5:  # numero de atributos extraidos para cada maquina
                 # passando os atributos da atList para o datDict:
                 if url == "https://www.vultr.com/products/cloud-compute/#pricing": # para a pagina-alvo 1
