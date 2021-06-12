@@ -39,25 +39,18 @@ atList = []
 
 # atDict (attributes dictionary): Dicionario de atributos de cada maquina. O dicionario de cada maquina sera adicionado a lista de maquinas (machList).
 atDict = {
-       "CPU" : "",
-       "MEMORY" : "",
+       "CPU/VCPU" : "",
+       "MEMORY/SSD DISK" : "",
        "STORAGE" : "",
-       "BANDWIDTH" : "",
+       "BANDWIDTH/TRANSFER" : "",
        "PRICE[$/mo]" : ""
 }
 
 # a partir daqui ainda falta polir e documentar melhor:
 
 def printMachines(machines):
-    print("\nMAQUINAS:\n")
-    """
-    for i in range(len(machines)):
-        print("--Maquina " + str(i+1) + "--\n")
-        for item in machines[i].items():
-            print(item[0] + ": " + item[1] + "\n")
-        print("\n")
-        """
     i = 1
+    print("\nMAQUINAS:\n")
     for mac in machines:
         print("--Maquina " + str(i) + "--\n")
         i += 1
@@ -98,9 +91,9 @@ def crawl(html, machines, atList, atDict):
                 # passando os atributos da atList para o datDict:
                 if url == "https://www.vultr.com/products/cloud-compute/#pricing": # para a pagina-alvo 1
                     atDict["STORAGE"]= atList[0]    
-                    atDict["CPU"]= atList[1]
-                    atDict["MEMORY"]= atList[2]
-                    atDict["BANDWIDTH"]= atList[3]
+                    atDict["CPU/VCPU"]= atList[1]
+                    atDict["MEMORY/SSD DISK"]= atList[2]
+                    atDict["BANDWIDTH/TRANSFER"]= atList[3]
                     atDict["PRICE[$/mo]"]= atList[4]
                 #elif url == "https://www.digitalocean.com/pricing/": #pagina-alvo 2
                     
