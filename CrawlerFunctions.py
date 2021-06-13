@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 import requests
 import json, csv
 
-
 # printMachines(machines): imprime os atributos de cada maquina.
 # Recebe como parametro a lista de dicionarios (machines).
 def printMachines(machines):
@@ -24,15 +23,18 @@ def printMachines(machines):
             
 
 # runCrawler(url, machines, atList, atDict): verifica se o URL corresponde com um dos que sao suportados 
-# pelo crawler. Recebe como parametros o URL, a lista de dicionarios com os atributos das maquinas
+# pelo crawler. Recebe como parametros o comando inserido pelo usuario (command), o URL, a lista de dicionarios com os atributos das maquinas
 #(machines), a lista de atributos (atList) e o dicionario de atributos (atDict).
-def runCrawler(url, machines, atList, atDict):
+def runCrawler(command, url, machines, atList, atDict):
     if url == "https://www.vultr.com/products/cloud-compute/#pricing" or url == "https://www.digitalocean.com/pricing/":
         # Chama a função crawl, para fazer a extração e armazenamento dos dados da pagina web:
         crawl(url, machines, atList, atDict)
-        printMachines(machines)
-        saveToJson(machines)
-        saveToCsv(machines)
+        if command == "--print":
+            printMachines(machines)
+        if command == "--save_csv":
+            saveToCsv(machines)
+        if command == "--save_json":
+            saveToJson(machines)
     else:
         errorUrl()
 
@@ -107,7 +109,9 @@ def crawl(url, machines, atList, atDict):
             print("")
             print(atDict)
             machines.append(atDict.copy())
-            
+    else:
+        errorUrl()
+        
                 
         
 # errorUrl(): imprime mensagem de erro se o URL nao for suportado pelo web crawler.

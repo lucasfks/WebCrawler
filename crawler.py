@@ -16,15 +16,20 @@ na pagina-alvo 1.
     BeautifulSoup: foi utilizada para extrair dados do arquivo HTML da pagina web.
     json: salva arquivos no formato json.
     csv: salva arquivos no formato csv.
+    sys: permite o uso do sys.argv.
 
 """
 
 from CrawlerFunctions import *
+import sys
 
 
-#url = "https://www.vultr.com/products/cloud-compute/#pricing"
-url = "https://www.digitalocean.com/pricing/"
+# lista de URLs suportados pelo crawler:
+urls = ["https://www.vultr.com/products/cloud-compute/#pricing", 
+        "https://www.digitalocean.com/pricing/"]
 
+
+commands = ["--print", "--save_csv", "--save_json"]
     
 # maquinas: Lista de maquinas. Cada elemento da lista e um dicionario de atributos para uma maquina especifica.
 machines = []
@@ -41,6 +46,16 @@ atDict = {
        "PRICE[$/mo]" : ""
 }
 
-
 #Script:
-runCrawler(url, machines, atList, atDict)
+if sys.argv[2] in urls:
+    if sys.argv[1] in commands:
+        # Se o URL e o comando inserido pelo usuario sao suportado pelo crawler, executar o crawler:
+        # sys.argv[1] é o comando desejado pelo usuario,
+        # sys.argv[2] é o URL.
+        runCrawler(sys.argv[1], sys.argv[2], machines, atList, atDict)
+        print("YEAH")
+    else:
+        print("NO")
+else:
+    print("NO")
+#runCrawler(urls[1], machines, atList, atDict)
