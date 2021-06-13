@@ -20,7 +20,8 @@ na pagina-alvo 1.
 
 """
 
-from CrawlerFunctions import *
+#from CrawlerFunctions import *
+import CrawlerFunctions as crawler
 import sys
 
 
@@ -52,8 +53,8 @@ if len(sys.argv) == 3:
         # Se o URL e o comando inserido pelo usuario sao suportado pelo crawler, executar o crawler:
         # sys.argv[1] é o comando desejado pelo usuario,
         # sys.argv[2] é o URL.
-        runCrawler(sys.argv[1], sys.argv[2], machines, atList, atDict)
+        crawler.runCrawler(sys.argv[1], sys.argv[2], machines, atList, atDict)
     else:
-        help()
+        crawler.help()
 else:
-    help()
+    crawler.help()
