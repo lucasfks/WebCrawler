@@ -5,10 +5,9 @@ CPU/VCPU, Memory, Storage/SSD Disk, Bandwidth/Transfer e Price[$/mo].
 
 -Instruções para o usuário-
 
-	Para executar o programa, o usuário deve fazer o download dos arquivos contidos nesse repositório e deve ter o Python instalado em versão 3.7.3 para que haja garantia de funcionamento.
-	É preciso também ter as seguintes bibliotecas do python instaladas: Requests, BeautifulSoup, json, csv, sys.
-	Então o usuário deve abrir o prompt de comando (ou aplicativo semelhante) e, no mesmo diretório em que estão os arquivos do repositório, chamar o web crawler no seguinte formato:
-
+Para executar o programa, o usuário deve fazer o download dos arquivos contidos nesse repositório e deve ter o Python instalado na versão 3.7.3 para que haja garantia de funcionamento.
+É preciso também ter as seguintes bibliotecas do python instaladas: Requests, BeautifulSoup, json, csv, sys.
+Então o usuário deve abrir o prompt de comando (ou aplicativo semelhante) e, no mesmo diretório em que estão os arquivos do repositório, chamar o web crawler no seguinte formato:
 
         python crawler.py <comando> <url>
 	
