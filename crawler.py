@@ -17,17 +17,6 @@ na pagina-alvo 1.
     json: salva arquivos no formato json.
     csv: salva arquivos no formato csv.
 
--Funcoes:
-    crawl(html, machines, atList, atDict): 
-        
-    webpage(url):
-        
-    runCrawler(url): verifica se a URL inserida eh suportada pelo web crawler. Se for, ela baixa o arquivo 
-    HTML da pagina web e executa o crawler, chamando a funcao crawl(html, machines, atList, atDict) para extrair os atributos desejados
-das paginas web. Se a URL inserida nao for suportada pelo crawler, chama a funcao 
-errorUrl() para imprimir uma mensagem de erro.
-
-    errorUrl(): imprime ensagem de erro caso o URL inserido nao seja suportado por este  web crawler.
 """
 
 from CrawlerFunctions import *
