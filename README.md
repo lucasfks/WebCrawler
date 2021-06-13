@@ -4,6 +4,12 @@ CPU/VCPU, Memory, Storage/SSD Disk, Bandwidth/Transfer e Price[$/mo].
 
 
 -Instruções para o usuário-
+Esse projeto é um web crawler capaz de acessar duas páginas ("https://www.vultr.com/products/cloud-compute/#pricing"
+e "https://www.digitalocean.com/pricing/") e extrair delas os seguintes atributos das máquinas disponíveis:
+CPU/VCPU, Memory, Storage/SSD Disk, Bandwidth/Transfer e Price[$/mo].
+
+
+-Instruções para o usuário-
 
 	Para executar o programa, o usuário deve fazer o download dos arquivos contidos nesse repositório e deve ter o Python instalado em versão 3.7.3 para que haja garantia de funcionamento.
 	É preciso também ter as seguintes bibliotecas do python instaladas: Requests, BeautifulSoup, json, csv, sys.
@@ -12,7 +18,7 @@ CPU/VCPU, Memory, Storage/SSD Disk, Bandwidth/Transfer e Price[$/mo].
         python crawler.py <comando> <url>
 
 Onde:
-	<comando> pode ser:
+	"<comando>" pode ser:
 		--print : imprime resultados na tela
 		--save_csv : salva dados em arquivo csv
 		--save_json : salva dados em arquivo json
