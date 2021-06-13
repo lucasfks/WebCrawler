@@ -33,8 +33,8 @@ errorUrl() para imprimir uma mensagem de erro.
 from CrawlerFunctions import *
 
 
-url = "https://www.vultr.com/products/cloud-compute/#pricing"
-#url = "https://www.digitalocean.com/pricing/"
+#url = "https://www.vultr.com/products/cloud-compute/#pricing"
+url = "https://www.digitalocean.com/pricing/"
 
     
 # maquinas: Lista de maquinas. Cada elemento da lista e um dicionario de atributos para uma maquina especifica.

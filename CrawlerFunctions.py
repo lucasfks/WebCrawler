@@ -23,10 +23,8 @@ def printMachines(machines):
 
 def runCrawler(url, machines, atList, atDict):
     if url == "https://www.vultr.com/products/cloud-compute/#pricing" or url == "https://www.digitalocean.com/pricing/":
-        # Chama a funcao webpage(url) para baixar o html da pagina web:
-        html = webpage(url)
         # Chama a função crawl, paa fazer a extração e armazenamento dos dados da pagina web:
-        crawl(url, html, machines, atList, atDict)
+        crawl(url, machines, atList, atDict)
         printMachines(machines)
         saveToJson(machines)
         saveToCsv(machines)
@@ -38,10 +36,12 @@ def webpage(url):
     html = BeautifulSoup(response.text, "html.parser")
     return html
 
-def crawl(url, html, machines, atList, atDict):
+def crawl(url, machines, atList, atDict):
     # Limpa as listas para eliminar qualquer lixo de outra iteracao do programa:
     machines.clear()
     atList.clear()
+    # Chama a funcao webpage(url) para baixar o html da pagina web:
+    html = webpage(url)
     # Para a pagina-alvo 1:
     if url == "https://www.vultr.com/products/cloud-compute/#pricing":
         #separando por maquina (e entao organizando uma lista de atributos pra cada maquina):
