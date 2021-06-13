@@ -23,3 +23,16 @@ Então o usuário deve abrir o prompt de comando (ou aplicativo semelhante) e, n
 		"https://www.digitalocean.com/pricing/"
 
 
+-Linhas de comando válidas-
+
+Para a página-alvo 1:
+
+	python crawler.py --print "https://www.vultr.com/products/cloud-compute/#pricing"
+	python crawler.py --save_json "https://www.vultr.com/products/cloud-compute/#pricing"
+	python crawler.py --save_csv "https://www.vultr.com/products/cloud-compute/#pricing"
+	
+Para a página-alvo 2:
+
+	python crawler.py --print "https://www.digitalocean.com/pricing/"
+	python crawler.py --save_json "https://www.digitalocean.com/pricing/"
+	python crawler.py --save_csv "https://www.digitalocean.com/pricing/"
