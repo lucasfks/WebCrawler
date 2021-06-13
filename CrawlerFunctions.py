@@ -26,17 +26,16 @@ def printMachines(machines):
 # pelo crawler. Recebe como parametros o comando inserido pelo usuario (command), o URL, a lista de dicionarios com os atributos das maquinas
 #(machines), a lista de atributos (atList) e o dicionario de atributos (atDict).
 def runCrawler(command, url, machines, atList, atDict):
-    if url == "https://www.vultr.com/products/cloud-compute/#pricing" or url == "https://www.digitalocean.com/pricing/":
-        # Chama a função crawl, para fazer a extração e armazenamento dos dados da pagina web:
-        crawl(url, machines, atList, atDict)
-        if command == "--print":
-            printMachines(machines)
-        if command == "--save_csv":
-            saveToCsv(machines)
-        if command == "--save_json":
-            saveToJson(machines)
-    else:
-        errorUrl()
+    # Chama a função crawl, para fazer a extração e armazenamento dos dados da pagina web:
+    crawl(url, machines, atList, atDict)
+    # Dependendo do comando, faz diferentes acoes:
+    if command == "--print":
+        printMachines(machines)
+    if command == "--save_csv":
+        saveToCsv(machines)
+    if command == "--save_json":
+        saveToJson(machines)
+    
 
 # webpage(url): baixa o HTML da pagina-alvo. Recebe como parametro o URL da pagina (url).
 def webpage(url):
@@ -48,7 +47,7 @@ def webpage(url):
 #Recebe como parametros o URL da página (url), a lista de dicionarios com os atributos das maquinas 
 #(machines), a lista de atributos (atList) e o dicionario de atributos (atDict).
 def crawl(url, machines, atList, atDict):
-    # Limpa as listas para eliminar qualquer lixo de outra iteracao do programa:
+    # Limpa as listas para garantir que vao estar vazias:
     machines.clear()
     atList.clear()
     # Chama a funcao webpage(url) para baixar o html da pagina web:
@@ -80,11 +79,6 @@ def crawl(url, machines, atList, atDict):
                     machines.append(atDict.copy())
     # Para a pagina-alvo 2:
     elif url == "https://www.digitalocean.com/pricing/":
-        # Acessando a tabela "Basic droplets":
-        """
-        for container in html.find_all("div", {"id": "basic-droplets"}, class_="container"):
-            print("a")
-        """
         # Acessando os boxes (cada box tem os atributos de uma maquina):
         #for box in container.find_all("li", class_="priceBoxItem"):
         for box in html.find_all("li", class_="priceBoxItem"):
@@ -106,8 +100,8 @@ def crawl(url, machines, atList, atDict):
             array2 = content[2].get_text().split(" ")
             atDict["BANDWIDTH/TRANSFER"] = array2[0] + " " + array2[1]
             #print(array2)
-            print("")
-            print(atDict)
+            #print("")
+            #print(atDict)
             machines.append(atDict.copy())
     else:
         errorUrl()
@@ -120,6 +114,27 @@ def errorUrl():
     As paginas-alvo suportadas por esse programa sao:
     1) "https://www.vultr.com/products/cloud-compute/#pricing"
     2) "https://www.digitalocean.com/pricing/"
+    """
+    print(message)
+    
+def help():
+    message = """
+    --crawler.py--
+        Help:
+            
+    Como chamar o programa:
+        python crawler.py <comando> <url> 
+        
+    <comando> pode ser:
+        --print : imprime resultados na tela
+        --save_csv : salva dados em arquivo csv
+        --save_json : salva dados em arquivo json
+    OBS.: --save_csv e --save_json salvam os arquivos
+    na mesma pasta em que estiver o arquivo crawler.py
+    
+    <url> deve ser um dos URLs suportados pelo crawler:
+        "https://www.vultr.com/products/cloud-compute/#pricing"
+        "https://www.digitalocean.com/pricing/"
     """
     print(message)
     

@@ -47,15 +47,13 @@ atDict = {
 }
 
 #Script:
-if sys.argv[2] in urls:
-    if sys.argv[1] in commands:
+if len(sys.argv) == 3:
+    if sys.argv[2] in urls and sys.argv[1] in commands:
         # Se o URL e o comando inserido pelo usuario sao suportado pelo crawler, executar o crawler:
         # sys.argv[1] é o comando desejado pelo usuario,
         # sys.argv[2] é o URL.
         runCrawler(sys.argv[1], sys.argv[2], machines, atList, atDict)
-        print("YEAH")
     else:
-        print("NO")
+        help()
 else:
-    print("NO")
-#runCrawler(urls[1], machines, atList, atDict)
+    help()
